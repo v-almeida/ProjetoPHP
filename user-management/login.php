@@ -1,6 +1,6 @@
 <?php
-include 'includes/db.php';
-include 'includes/functions.php';
+include __DIR__ . '/includes/db.php';
+include __DIR__ . '/includes/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
