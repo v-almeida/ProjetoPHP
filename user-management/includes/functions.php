@@ -10,6 +10,7 @@ function registerUser($username, $password, $role) {
 
 function loginUser($username, $password) {
     global $mysqli;
+    session_start();
     $stmt = $mysqli->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -18,7 +19,6 @@ function loginUser($username, $password) {
     $stmt->close();
     
     if ($user && password_verify($password, $user['password'])) {
-        session_start();
         $_SESSION['user_id'] = $user['id'];
         return true;
     }
@@ -27,7 +27,8 @@ function loginUser($username, $password) {
 
 function getUserById($id) {
     global $mysqli;
-    $stmt = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
+    $stmt = $mysqli->prepare("SELECT * ```php
+FROM users WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -58,6 +59,14 @@ function getTrainingById($id) {
     return $training;
 }
 
+function createTraining($name, $description, $userId) {
+    global $mysqli;
+    $stmt = $mysqli->prepare("INSERT INTO trainings (name, description, user_id) VALUES (?, ?, ?)");
+    $stmt->bind_param("ssi", $name, $description, $userId);
+    $stmt->execute();
+    $stmt->close();
+}
+
 function updateTraining($id, $name, $description) {
     global $mysqli;
     $stmt = $mysqli->prepare("UPDATE trainings SET name = ?, description = ? WHERE id = ?");
@@ -74,3 +83,4 @@ function deleteTraining($id) {
     $stmt->close();
 }
 ?>
+
