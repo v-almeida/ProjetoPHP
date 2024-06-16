@@ -9,6 +9,10 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user = getUserById($_SESSION['user_id']);
+if (!$user) {
+    echo "User not found.";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,14 +33,18 @@ $user = getUserById($_SESSION['user_id']);
     <ul>
         <?php
         $trainings = getTrainingsByUserId($user['id']);
-        foreach ($trainings as $training) {
-            echo "<li>" . htmlspecialchars($training['name']) . " - " . htmlspecialchars($training['description']);
-            echo " <a href='trainings/view_training.php?id=" . $training['id'] . "'>View</a>";
-            if ($user['role'] == 'teacher') {
-                echo " <a href='trainings/edit_training.php?id=" . $training['id'] . "'>Edit</a>";
-                echo " <a href='trainings/delete_training.php?id=" . $training['id'] . "'>Delete</a>";
+        if (empty($trainings)) {
+            echo "<li>No trainings found.</li>";
+        } else {
+            foreach ($trainings as $training) {
+                echo "<li>" . htmlspecialchars($training['name']) . " - " . htmlspecialchars($training['description']);
+                echo " <a href='trainings/view_training.php?id=" . $training['id'] . "'>View</a>";
+                if ($user['role'] == 'teacher') {
+                    echo " <a href='trainings/edit_training.php?id=" . $training['id'] . "'>Edit</a>";
+                    echo " <a href='trainings/delete_training.php?id=" . $training['id'] . "'>Delete</a>";
+                }
+                echo "</li>";
             }
-            echo "</li>";
         }
         ?>
     </ul>

@@ -1,6 +1,6 @@
 <?php
-include __DIR__ . '/includes/db.php';
-include __DIR__ . '/includes/functions.php';
+include 'includes/db.php';
+include 'includes/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -27,5 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="password" name="password" required placeholder="Password">
         <button type="submit">Login</button>
     </form>
+    <a href="register.php">Não tem uma conta? Registre-se aqui</a>
 </body>
 </html>

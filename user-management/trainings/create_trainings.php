@@ -17,12 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: ../dashboard.php");
     exit();
 }
-
-function createTraining($name, $description, $userId) {
-    global $pdo;
-    $stmt = $pdo->prepare("INSERT INTO trainings (name, description, user_id) VALUES (?, ?, ?)");
-    $stmt->execute([$name, $description, $userId]);
-}
 ?>
 
 <!DOCTYPE html>

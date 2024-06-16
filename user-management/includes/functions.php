@@ -1,4 +1,6 @@
 <?php
+include 'db.php';
+
 function registerUser($username, $password, $role) {
     global $mysqli;
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -27,8 +29,7 @@ function loginUser($username, $password) {
 
 function getUserById($id) {
     global $mysqli;
-    $stmt = $mysqli->prepare("SELECT * ```php
-FROM users WHERE id = ?");
+    $stmt = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -83,4 +84,3 @@ function deleteTraining($id) {
     $stmt->close();
 }
 ?>
-

@@ -24,12 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: ../dashboard.php");
     exit();
 }
-
-function updateTraining($id, $name, $description) {
-    global $pdo;
-    $stmt = $pdo->prepare("UPDATE trainings SET name = ?, description = ? WHERE id = ?");
-    $stmt->execute([$name, $description, $id]);
-}
 ?>
 
 <!DOCTYPE html>

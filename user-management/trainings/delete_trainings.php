@@ -22,12 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: ../dashboard.php");
     exit();
 }
-
-function deleteTraining($id) {
-    global $pdo;
-    $stmt = $pdo->prepare("DELETE FROM trainings WHERE id = ?");
-    $stmt->execute([$id]);
-}
 ?>
 
 <!DOCTYPE html>
@@ -41,4 +35,6 @@ function deleteTraining($id) {
     <form action="delete_training.php?id=<?php echo $trainingId; ?>" method="POST">
         <button type="submit">Yes, Delete</button>
     </form>
-    <a href="../dashboard.php
+    <a href="../dashboard.php">No, Go Back</a>
+</body>
+</html>

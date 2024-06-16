@@ -19,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error_message = "Usuário já existe.";
     } else {
         registerUser($username, $password, $role);
-        $success_message = "Usuário registrado com sucesso!";
+        header("Location: login.php");
+        exit();
     }
     $stmt->close();
 }
@@ -48,5 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </select>
         <button type="submit">Registrar</button>
     </form>
+    <a href="login.php">Já tem uma conta? Faça login aqui</a>
 </body>
 </html>
