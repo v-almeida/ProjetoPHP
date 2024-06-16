@@ -18,15 +18,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../css/styles.css">
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
+<div class="container"> 
     <form action="login.php" method="POST">
         <input type="text" name="username" required placeholder="Username">
         <input type="password" name="password" required placeholder="Password">
         <button type="submit">Login</button>
     </form>
     <a href="register.php">Não tem uma conta? Registre-se aqui</a>
+</div>       
 </body>
 </html>

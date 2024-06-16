@@ -29,10 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <link rel="stylesheet" href="../css/styles.css">
     <meta charset="UTF-8">
     <title>Cadastro</title>
 </head>
 <body>
+<div class="container"> 
     <h1>Cadastro de Usuário</h1>
     <?php if ($success_message): ?>
         <p style="color: green;"><?php echo $success_message; ?></p>
@@ -44,11 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" name="username" required placeholder="Username">
         <input type="password" name="password" required placeholder="Password">
         <select name="role">
-            <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
+            <option value="student">Aluno</option>
+            <option value="teacher">Professor</option>
         </select>
         <button type="submit">Registrar</button>
     </form>
     <a href="login.php">Já tem uma conta? Faça login aqui</a>
+</div>   
 </body>
 </html>

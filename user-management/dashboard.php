@@ -8,6 +8,9 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+$success_message = '';
+$error_message = '';
+
 $user = getUserById($_SESSION['user_id']);
 if (!$user) {
     echo "User not found.";
@@ -18,10 +21,12 @@ if (!$user) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../css/styles.css">
     <meta charset="UTF-8">
     <title>Dashboard</title>
 </head>
 <body>
+<div class="container"> 
     <h1>Bem-vindo, <?php echo htmlspecialchars($user['username']); ?></h1>
     <a href="logout.php">Logout</a>
     
@@ -48,5 +53,6 @@ if (!$user) {
         }
         ?>
     </ul>
+</div>      
 </body>
 </html>
