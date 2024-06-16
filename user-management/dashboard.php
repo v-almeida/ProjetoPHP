@@ -26,7 +26,7 @@ if (!$user) {
     <a href="logout.php">Logout</a>
     
     <?php if ($user['role'] == 'teacher'): ?>
-        <a href="trainings/create_training.php">Create New Training</a>
+        <a href="trainings/create_trainings.php">Create New Training</a>
     <?php endif; ?>
 
     <h2>Your Trainings</h2>
