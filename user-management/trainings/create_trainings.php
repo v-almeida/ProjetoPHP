@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <h1>Create New Training</h1>
-    <form action="create_training.php" method="POST">
+    <form action="create_trainings.php" method="POST">
         <input type="text" name="name" required placeholder="Training Name">
         <textarea name="description" required placeholder="Training Description"></textarea>
         <button type="submit">Create</button>
