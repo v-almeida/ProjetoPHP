@@ -23,14 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Training</title>
+    <title>Criar treino!</title>
 </head>
 <body>
-    <h1>Create New Training</h1>
+    <h1>Criar novo Treino!</h1>
     <form action="create_trainings.php" method="POST">
         <input type="text" name="name" required placeholder="Training Name">
         <textarea name="description" required placeholder="Training Description"></textarea>
-        <button type="submit">Create</button>
+        <button type="submit">Criar</button>
     </form>
 </body>
 </html>

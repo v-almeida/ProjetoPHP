@@ -33,12 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Edit Training</title>
 </head>
 <body>
-    <h1>Edit Training</h1>
-    <form action="edit_training.php?id=<?php echo $trainingId; ?>" method="POST">
+    <h1>Editar Treino</h1>
+    <form action="edit_trainings.php?id=<?php echo $trainingId; ?>" method="POST">
         <input type="text" name="name" required placeholder="Training Name" value="<?php echo htmlspecialchars($training['name']); ?>">
         <textarea name="description" required placeholder="Training Description"><?php echo htmlspecialchars($training['description']); ?></textarea>
         <button type="submit">Update</button>
     </form>
-    <a href="../dashboard.php">Back to Dashboard</a>
+    <a href="../dashboard.php">Voltar ao Dashboard</a>
 </body>
 </html>

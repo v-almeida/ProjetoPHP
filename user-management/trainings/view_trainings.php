@@ -28,11 +28,11 @@ if ($user['role'] == 'student' && $training['user_id'] != $user['id']) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View Training</title>
+    <title>Ver Treino</title>
 </head>
 <body>
     <h1><?php echo htmlspecialchars($training['name']); ?></h1>
     <p><?php echo htmlspecialchars($training['description']); ?></p>
-    <a href="../dashboard.php">Back to Dashboard</a>
+    <a href="../dashboard.php">Voltar para o Dashboard</a>
 </body>
 </html>

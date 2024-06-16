@@ -28,13 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Delete Training</title>
+    <title>Deletar Treino"</title>
 </head>
 <body>
-    <h1>Are you sure you want to delete this training?</h1>
-    <form action="delete_training.php?id=<?php echo $trainingId; ?>" method="POST">
-        <button type="submit">Yes, Delete</button>
+    <h1>Tem certeza de que deseja excluir este treinamento?</h1>
+    <form action="delete_trainings.php?id=<?php echo $trainingId; ?>" method="POST">
+        <button type="submit">Sim, Deletar</button>
     </form>
-    <a href="../dashboard.php">No, Go Back</a>
+    <a href="../dashboard.php">Não, volte</a>
 </body>
 </html>

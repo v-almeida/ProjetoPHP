@@ -22,14 +22,14 @@ if (!$user) {
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Welcome, <?php echo htmlspecialchars($user['username']); ?></h1>
+    <h1>Bem-vindo, <?php echo htmlspecialchars($user['username']); ?></h1>
     <a href="logout.php">Logout</a>
     
     <?php if ($user['role'] == 'teacher'): ?>
-        <a href="trainings/create_trainings.php">Create New Training</a>
+        <a href="trainings/create_trainings.php">Criar novo Treino</a>
     <?php endif; ?>
 
-    <h2>Your Trainings</h2>
+    <h2>Seus Treinos</h2>
     <ul>
         <?php
         $trainings = getTrainingsByUserId($user['id']);
@@ -38,10 +38,10 @@ if (!$user) {
         } else {
             foreach ($trainings as $training) {
                 echo "<li>" . htmlspecialchars($training['name']) . " - " . htmlspecialchars($training['description']);
-                echo " <a href='trainings/view_training.php?id=" . $training['id'] . "'>View</a>";
+                echo " <a href='trainings/view_trainings.php?id=" . $training['id'] . "'>Ver</a>";
                 if ($user['role'] == 'teacher') {
-                    echo " <a href='trainings/edit_training.php?id=" . $training['id'] . "'>Edit</a>";
-                    echo " <a href='trainings/delete_training.php?id=" . $training['id'] . "'>Delete</a>";
+                    echo " <a href='trainings/edit_trainings.php?id=" . $training['id'] . "'>Editar</a>";
+                    echo " <a href='trainings/delete_trainings.php?id=" . $training['id'] . "'>Deletar</a>";
                 }
                 echo "</li>";
             }
