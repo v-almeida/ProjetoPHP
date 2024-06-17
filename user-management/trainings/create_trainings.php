@@ -14,12 +14,22 @@ $error_message = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $userId = $_SESSION['user_id'];
+    $student_id = isset($_POST['student_id']) ? $_POST['student_id'] : null;
+    $teacher_id = $_SESSION['user_id'];
 
-    createTraining($name, $description, $userId);
+    if ($student_id) {
+        // Salvando treino para o aluno
+        createTraining($name, $description, $student_id);
+    }
+
+    // Salvando treino para o professor
+    createTraining($name, $description, $teacher_id);
+
     header("Location: ../dashboard.php");
     exit();
 }
+
+$users = getAllUsers();
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title>Criar Treino!</title>
     <style>
-        /* Reset básico */
         * {
             margin: 0;
             padding: 0;
@@ -59,7 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             animation: fadeIn 0.5s ease-in-out;
         }
 
-        /* Animação */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -71,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        /* Títulos */
         h1, h2 {
             margin-bottom: 20px;
         }
@@ -86,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: #555;
         }
 
-        /* Formulários e listas */
         form, ul {
             margin-bottom: 20px;
             text-align: left;
@@ -102,14 +108,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             transition: all 0.3s ease-in-out;
         }
 
-        /* Foco nos inputs */
         input:focus, textarea:focus, select:focus {
             border-color: #007bff;
             box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
             outline: none;
         }
 
-        /* Botões */
         button {
             background-color: #007bff;
             color: white;
@@ -126,7 +130,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             background-color: #0056b3;
         }
 
-        /* Links */
         a {
             color: #007bff;
             text-decoration: none;
@@ -137,7 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: #0056b3;
         }
 
-        /* Mensagens de sucesso e erro */
         .success-message {
             color: green;
             background-color: #d4edda;
@@ -158,7 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             text-align: center;
         }
 
-        /* Estilização adicional para elementos específicos */
         textarea {
             resize: vertical;
         }
@@ -229,7 +230,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: #0056b3;
         }
 
-        /* Adicionando a barra de navegação */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -287,6 +287,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="create_trainings.php" method="POST">
             <input type="text" name="name" required placeholder="Nome do treino">
             <textarea name="description" required placeholder="Descrição do treino"></textarea>
+            <select name="student_id">
+                <option value="">Selecione um aluno (opcional)</option>
+                <?php foreach ($users as $user): ?>
+                    <option value="<?php echo $user['id']; ?>"><?php echo htmlspecialchars($user['username']); ?></option>
+                <?php endforeach; ?>
+            </select>
             <button type="submit">Criar</button>
         </form>
         <a href="../dashboard.php" class="back-link">Voltar ao Dashboard</a>

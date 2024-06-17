@@ -83,4 +83,43 @@ function deleteTraining($id) {
     $stmt->execute();
     $stmt->close();
 }
+
+function getAllUsers() {
+    global $mysqli;
+    $stmt = $mysqli->prepare("SELECT id, username FROM users WHERE role = 'student'");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $users = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $users;
+}
+
+function getAllTrainings() {
+    global $pdo;
+    $stmt = $pdo->prepare("SELECT trainings.id, trainings.name, trainings.description, users.username as student_name FROM trainings JOIN users ON trainings.student_id = users.id");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function updateUser($id, $username, $password = null) {
+    global $mysqli;
+    if ($password) {
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $stmt = $mysqli->prepare("UPDATE users SET username = ?, password = ? WHERE id = ?");
+        $stmt->bind_param("ssi", $username, $hashedPassword, $id);
+    } else {
+        $stmt = $mysqli->prepare("UPDATE users SET username = ? WHERE id = ?");
+        $stmt->bind_param("si", $username, $id);
+    }
+    $stmt->execute();
+    $stmt->close();
+}
+
+function deleteUser($id) {
+    global $mysqli;
+    $stmt = $mysqli->prepare("DELETE FROM users WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+}
 ?>

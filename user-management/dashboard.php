@@ -11,11 +11,15 @@ if (!isset($_SESSION['user_id'])) {
 $success_message = '';
 $error_message = '';
 
+
+
 $user = getUserById($_SESSION['user_id']);
 if (!$user) {
     echo "User not found.";
     exit();
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +38,7 @@ if (!$user) {
         <a href="trainings/create_trainings.php">Criar novo Treino</a>
     <?php endif; ?>
 
-    <h2>Seus Treinos</h2>
+    <h2>Treinos</h2>
     <ul>
         <?php
         $trainings = getTrainingsByUserId($user['id']);
